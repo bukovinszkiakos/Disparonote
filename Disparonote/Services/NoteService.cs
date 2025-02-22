@@ -13,7 +13,7 @@
             Content = createNoteDto.Content,
             AccessKey = Guid.NewGuid().ToString("N"),
             CreatedAt = DateTime.UtcNow,
-            ExpiresAt = createNoteDto.ExpiresAt,
+            ExpiresAt = createNoteDto.ExpiresAt?.ToUniversalTime(),
         };
         await _noteRepository.CreateNoteAsync(note);
 
@@ -32,10 +32,16 @@
             return null;
         }
 
-        await _noteRepository.DeleteNoteAsync(note);
+        if (note.ExpiresAt.HasValue && note.ExpiresAt < DateTime.UtcNow)
+        {
+            await _noteRepository.DeleteNoteAsync(note);
+            return null;
+        }
 
+        await _noteRepository.DeleteNoteAsync(note);
         return note.Content;
     }
+
     public async Task DeleteNoteByAccessKeyAsync(string accessKey)
     {
         var note = await _noteRepository.GetNoteByAccessKeyAsync(accessKey);
