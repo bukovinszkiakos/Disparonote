@@ -23,5 +23,18 @@ public class NoteRepository : INoteRepository
         _context.Notes.Remove(note);
         await _context.SaveChangesAsync();
     }
+    public async Task DeleteExpiredNotesAsync()
+    {
+        var now = DateTime.UtcNow;
+        var expiredNotes = await _context.Notes
+            .Where(n => n.ExpiresAt.HasValue && n.ExpiresAt < now)
+            .ToListAsync();
+
+        if (expiredNotes.Any())
+        {
+            _context.Notes.RemoveRange(expiredNotes);
+            await _context.SaveChangesAsync();
+        }
+    }
 
 }
