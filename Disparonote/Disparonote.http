@@ -1,4 +1,4 @@
-@Disparonote_HostAddress = http://localhost:5202
+@Disparonote_HostAddress = http://localhost:5184
 
 GET {{Disparonote_HostAddress}}/weatherforecast/
 Accept: application/json
