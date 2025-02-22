@@ -1,6 +1,13 @@
 "use client";
+
 import { useState } from "react";
 import { apiPost } from "../../utils/api";
+import {
+  generateEncryptionKey,
+  encryptText,
+  exportKey,
+  arrayBufferToBase64,
+} from "../../utils/crypto";
 import "./createnote.css";
 
 export default function CreateNote() {
@@ -15,21 +22,18 @@ export default function CreateNote() {
     setAccessLink(null);
 
     try {
-      const data = {
-        Content: content,
+      const key = await generateEncryptionKey();
+      const encryptedBuffer = await encryptText(key, content);
+      const encryptedContent = arrayBufferToBase64(encryptedBuffer);
+      const exportedKey = await exportKey(key);
+
+      const response = await apiPost("/notes", {
+        Content: encryptedContent,
         ExpiresAt: expiresAt ? new Date(expiresAt) : null,
-      };
+      });
 
-      console.log("🔄 API call in progress:", data);
-      const response = await apiPost("/notes", data);
-
-      console.log("✅ API response:", response);
-
-      if (!response || !response.accessLink) {
-        throw new Error("Invalid API response, missing accessLink.");
-      }
-
-      const fullLink = `http://localhost:3000/note/${response.accessLink.split("/").pop()}`;
+      const noteId = response.accessLink.split("/").pop();
+      const fullLink = `${window.location.origin}/note/${noteId}#${exportedKey}`;
       setAccessLink(fullLink);
     } catch (err) {
       console.error("❌ Error:", err);
@@ -68,16 +72,11 @@ export default function CreateNote() {
 
       {accessLink && (
         <div>
-          <p><b>📌 Shareable Link:</b></p>
-          <input
-            type="text"
-            value={accessLink}
-            readOnly
-            style={{ width: "300px" }}
-          />
-          <button
-            onClick={() => navigator.clipboard.writeText(accessLink)}
-          >
+          <p>
+            <b>📌 Shareable Link:</b>
+          </p>
+          <input type="text" value={accessLink} readOnly style={{ width: "300px" }} />
+          <button onClick={() => navigator.clipboard.writeText(accessLink)}>
             Copy
           </button>
         </div>
