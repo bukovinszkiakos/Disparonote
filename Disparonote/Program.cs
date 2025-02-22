@@ -36,6 +36,7 @@ void AddServices()
     builder.Services.AddScoped<INoteRepository, NoteRepository>();
     builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddHostedService<NoteCleanupService>();
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
 }
