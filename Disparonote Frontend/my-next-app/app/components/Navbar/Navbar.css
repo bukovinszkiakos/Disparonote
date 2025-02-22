@@ -1,0 +1,45 @@
+.heading {
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;  
+    background: #2d2b2b;  
+    padding: 10px 0; 
+    text-align: center;
+    z-index: 1000; 
+  }
+  
+  
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0.8rem;
+    gap: 2rem; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    width: 100%;
+  }
+  
+  
+  .btn {
+    background-color: rgb(17, 12, 12);
+    border: none;
+    padding: 15px 30px;  
+    cursor: pointer;
+    font-size: 18px;  
+    font-weight: bold;
+    border-radius: 8px;  
+    transition: all 0.3s ease;
+    color: white;
+    width: 150px; 
+  text-align: center;
+  }
+  
+  .btn:hover {
+    background: #1d1c1c;
+    transform: scale(1.05); 
+  }
+  
+  
