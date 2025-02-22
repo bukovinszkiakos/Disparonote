@@ -1,0 +1,6 @@
+services:
+  disparonote:
+    image: ${DOCKER_REGISTRY-}disparonote
+    build:
+      context: .
+      dockerfile: Disparonote/Dockerfile
