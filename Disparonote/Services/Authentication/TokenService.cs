@@ -7,7 +7,7 @@ using System.Globalization;
 
 public class TokenService : ITokenService
 {
-    private const int ExpirationMinutes = 1;
+    private const int ExpirationMinutes = 10;
     private readonly IConfiguration _configuration;
 
     public TokenService(IConfiguration configuration)
