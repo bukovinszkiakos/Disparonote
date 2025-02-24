@@ -1,4 +1,4 @@
-const BASE_URL = ""; // Using relative URLs so Next.js rewrite rules work
+const BASE_URL = ""; 
 
 async function apiFetch(endpoint, method = "GET", data = null) {
   const url = `${BASE_URL}${endpoint}`;
@@ -10,7 +10,7 @@ async function apiFetch(endpoint, method = "GET", data = null) {
   const options = {
     method,
     headers,
-    credentials: "include", // Important: Ensures cookies are automatically sent!
+    credentials: "include", 
   };
 
   if (data) {
