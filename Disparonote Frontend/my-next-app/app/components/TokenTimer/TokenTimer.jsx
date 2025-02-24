@@ -44,7 +44,7 @@ export default function TokenTimer({ expirationUnix }) {
   return (
     <div className="token-timer-container">
       <FaClock className="token-icon" />
-      <span>Token expires in: {Math.floor(timeLeft / 1000)} sec</span>
+      <span>Session expires in: {Math.floor(timeLeft / 1000)} sec</span>
     </div>
   );
 }
