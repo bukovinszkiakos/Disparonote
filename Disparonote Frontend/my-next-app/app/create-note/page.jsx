@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { apiPost } from "../../utils/api";
 import {
@@ -42,45 +41,53 @@ export default function CreateNote() {
   };
 
   return (
-    <div className="create-note-container">
-      <h2>Create Note</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleCreateNote}>
-        <div>
-          <label htmlFor="content">Note Content:</label>
-          <textarea
-            id="content"
-            placeholder="Write the content of the note here..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-            rows={5}
-            cols={40}
-          />
-        </div>
-        <div>
-          <label htmlFor="expiresAt">Expiration time (optional):</label>
-          <input
-            type="datetime-local"
-            id="expiresAt"
-            value={expiresAt}
-            onChange={(e) => setExpiresAt(e.target.value)}
-          />
-        </div>
-        <button type="submit">Create Note</button>
-      </form>
+    <div className="note-wrapper">
+      <div className="note-form-box">
+        <h2>Create Note</h2>
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {accessLink && (
-        <div>
-          <p>
-            <b>📌 Shareable Link:</b>
-          </p>
-          <input type="text" value={accessLink} readOnly style={{ width: "300px" }} />
-          <button onClick={() => navigator.clipboard.writeText(accessLink)}>
-            Copy
+        <form onSubmit={handleCreateNote}>
+          <div className="note-input-box">
+            <span className="note-icon">
+              <ion-icon name="document-text"></ion-icon>
+            </span>
+            <textarea
+              placeholder="Write the content of the note here..."
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+              rows={5}
+            />
+          </div>
+
+          <div className="note-input-box">
+            <span className="note-icon">
+              <ion-icon name="time"></ion-icon>
+            </span>
+            <input
+              type="datetime-local"
+              value={expiresAt}
+              onChange={(e) => setExpiresAt(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" className="note-btn">
+            Create Note
           </button>
-        </div>
-      )}
+        </form>
+
+        {accessLink && (
+          <div className="note-access-link-container">
+            <p>
+              <b>📌 Shareable Link:</b>
+            </p>
+            <input type="text" value={accessLink} readOnly />
+            <button onClick={() => navigator.clipboard.writeText(accessLink)}>
+              Copy
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
