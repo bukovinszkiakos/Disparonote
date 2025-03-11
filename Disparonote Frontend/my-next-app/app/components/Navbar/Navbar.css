@@ -70,3 +70,8 @@
   width: 30px;
   height: 30px;
 }
+
+
+.nav-link {
+  text-decoration: none;
+}
