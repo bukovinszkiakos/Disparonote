@@ -35,7 +35,7 @@ export default function Login() {
         <h2>Login</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form action="#" onSubmit={handleLogin}>
-          <div className="input-box">
+          <div className="login-input-box">
             <span className="icon">
               <ion-icon name="mail"></ion-icon>
             </span>
@@ -48,7 +48,7 @@ export default function Login() {
             <label>Email</label>
           </div>
 
-          <div className="input-box">
+          <div className="login-input-box">
             <span className="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
@@ -88,26 +88,3 @@ export default function Login() {
 }
 
 
-/*
-return (
-  <div className="login-container">
-    <h2>Login</h2>
-    {error && <p style={{ color: "red" }}>{error}</p>}
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
-  </div>
-);
-*/
