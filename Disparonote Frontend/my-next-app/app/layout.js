@@ -2,7 +2,8 @@
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import "./root.css";
+import './globals.css';
+
 
 export default function RootLayout({ children }) {
   return (
