@@ -71,7 +71,7 @@ npm run dev
 ```
 
 ## 👥 Contributors
-- **Your Name** (@yourgithub)
+- **Ákos Bukovinszki** ([github](https://github.com/bukovinszkiakos))
 
 ## 🔧 Key Configuration Values
 - 🔑 Connection string is stored in `appsettings.json`
@@ -84,6 +84,5 @@ npm run dev
 - ✅ **Automated tests** are implemented in the backend
 - 🔐 **AES-GCM encryption** is used for note security
 
----
-**This README ensures your project meets the expected requirements for a mentor review. Let me know if you need any modifications!** 🚀
+
 
