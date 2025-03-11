@@ -18,24 +18,30 @@ export default function NoteView() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!accessKey) return;
+    if (!accessKey) return; 
 
     const fetchAndDecryptNote = async () => {
       try {
+        
         const response = await apiGet(`/notes/${accessKey}`);
         const encryptedBase64 = response.content;
+        
         const encryptedBuffer = base64ToArrayBuffer(encryptedBase64);
 
+        
         const fragment = window.location.hash;
         if (!fragment) {
           throw new Error("Missing decryption key in URL fragment.");
         }
+       
         const clientSecretKey = fragment.substring(1);
 
+        
         const key = await importKeyFromBase64(clientSecretKey);
 
+        
         const decrypted = await decryptText(key, new Uint8Array(encryptedBuffer));
-        setDecryptedContent(decrypted);
+        setDecryptedContent(decrypted); 
       } catch (err) {
         console.error("❌ Error during decryption:", err);
         setError("The note was not found, or it has already been viewed, or decryption failed.");
