@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { apiPost } from "../../utils/api";
 import {
@@ -10,25 +11,31 @@ import {
 import "./createnote.css";
 
 export default function CreateNote() {
+
   const [content, setContent] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
   const [accessLink, setAccessLink] = useState(null);
   const [error, setError] = useState(null);
 
+
   const handleCreateNote = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     setError(null);
     setAccessLink(null);
 
     try {
+      
       const key = await generateEncryptionKey();
+      
       const encryptedBuffer = await encryptText(key, content);
+     
       const encryptedContent = arrayBufferToBase64(encryptedBuffer);
+
       const exportedKey = await exportKey(key);
 
       const response = await apiPost("/notes", {
         Content: encryptedContent,
-        ExpiresAt: expiresAt ? new Date(expiresAt) : null,
+        ExpiresAt: expiresAt ? new Date(expiresAt) : null, 
       });
 
       const noteId = response.accessLink.split("/").pop();
@@ -36,7 +43,7 @@ export default function CreateNote() {
       setAccessLink(fullLink);
     } catch (err) {
       console.error("❌ Error:", err);
-      setError("Failed to create the note.");
+      setError("Failed to create the note."); 
     }
   };
 
