@@ -361,3 +361,27 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# === Node.js / Next.js frontend ===
+node_modules/
+.next/
+dist/
+.env
+*.env.local
+*.env.development
+*.env.production
+
+# Optional build outputs
+frontend/my-next-app/.next/
+frontend/my-next-app/node_modules/
+frontend/my-next-app/out/
+frontend/my-next-app/.env*
+
+# Build / publish outputok
+publish-test/
+runtimes/
+*.deps.json
+*.runtimeconfig.json
+*.dll
+*.exe
+

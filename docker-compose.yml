@@ -1,6 +1,42 @@
 services:
-  disparonote:
-    image: ${DOCKER_REGISTRY-}disparonote
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: disparonote-db
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "yourStrong(!)Password"
+      ACCEPT_EULA: "Y"
+    networks:
+      - disparo-net
+
+  backend:
     build:
-      context: .
-      dockerfile: Disparonote/Dockerfile
+      context: ./backend
+    container_name: disparonote-backend
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=disparonote-db;Database=DisparoNoteDb;User Id=sa;Password=yourStrong(!)Password;Encrypt=False;TrustServerCertificate=True;"
+    depends_on:
+      - db
+    networks:
+      - disparo-net
+
+  frontend:
+    build:
+      context: ./frontend/my-next-app
+    container_name: disparonote-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://disparonote-backend:5000
+    depends_on:
+      - backend
+    networks:
+      - disparo-net
+
+networks:
+  disparo-net:
