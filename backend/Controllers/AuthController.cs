@@ -77,7 +77,7 @@ public class AuthController : ControllerBase
     public IActionResult Me()
     {
         var user = HttpContext.User;
-        if (user == null)
+        if (user == null || !user.Identity.IsAuthenticated)
             return Unauthorized();
 
         var email = user.FindFirst(ClaimTypes.Email)?.Value;
