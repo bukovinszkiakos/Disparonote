@@ -32,8 +32,15 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<DisparoNoteDbContext>();
-    dbContext.Database.Migrate();
+
+    var providerName = dbContext.Database.ProviderName;
+
+    if (!string.IsNullOrEmpty(providerName) && providerName.Contains("SqlServer"))
+    {
+        dbContext.Database.Migrate();
+    }
 }
+
 app.Run();
 
 // Method implementations
@@ -128,3 +135,5 @@ void AddIdentity()
         })
         .AddEntityFrameworkStores<DisparoNoteDbContext>();
 }
+
+public partial class Program { }
