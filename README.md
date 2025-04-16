@@ -24,9 +24,24 @@ The application features a **Next.js frontend** and an **ASP.NET Core backend** 
 
 ---
 
-## 📸 Screenshot
+Nagyon jó ötlet! Itt egy frissített, letisztult és informatív verzió, amiben benne van az is, hogy a jegyzetet másnak küldöd el — és az automatikus törlés is érthető marad:
 
-_Work in progress – UI preview coming soon._
+---
+
+## 🎞️ Live Demo (GIF)
+
+Below is a quick preview showing how **DisparoNote** works in action:
+
+### ✍️ A user creates a secure note and shares a one-time link with someone else. 
+### Once it’s opened, the note is automatically deleted forever.
+
+<img src="https://github.com/user-attachments/assets/5174fae0-7853-4cf4-81a5-2d92c4029dc7" width="540" height="330" />
+
+
+> 🔐 This is just one of the core flows — DisparoNote also supports features like:
+> - time-based expiration
+> - AES-GCM encryption
+> - JWT-authenticated access to ensure that your private notes stay private.
 
 ---
 
@@ -135,4 +150,4 @@ This project is licensed under the MIT License.
 ---
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
-```
+
