@@ -35,7 +35,8 @@ Below is a quick preview showing how **DisparoNote** works in action:
 ### ✍️ A user creates a secure note and shares a one-time link with someone else. 
 ### Once it’s opened, the note is automatically deleted forever.
 
-<img src="https://github.com/user-attachments/assets/5174fae0-7853-4cf4-81a5-2d92c4029dc7" width="540" height="330" />
+<img src="https://github.com/user-attachments/assets/5174fae0-7853-4cf4-81a5-2d92c4029dc7" width="100%" />
+
 
 
 > 🔐 This is just one of the core flows — DisparoNote also supports features like:
