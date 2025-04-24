@@ -24,10 +24,6 @@ The application features a **Next.js frontend** and an **ASP.NET Core backend** 
 
 ---
 
-Nagyon jó ötlet! Itt egy frissített, letisztult és informatív verzió, amiben benne van az is, hogy a jegyzetet másnak küldöd el — és az automatikus törlés is érthető marad:
-
----
-
 ## 🎞️ Live Demo (GIF)
 
 Below is a quick preview showing how **DisparoNote** works in action:
